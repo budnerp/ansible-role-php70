@@ -1,0 +1,39 @@
+---
+            
+  - name: Configure www-pool.conf
+    template:
+      src: www-pool.conf.j2
+      dest: /etc/opt/remi/php70/php-fpm.d/www.conf
+      owner: root
+      group: root
+      mode: 0644
+    notify:
+      - restart php70-php-fpm
+      
+  - name: Configure custom php.ini for php70
+    template:
+      src: php.ini.j2
+      dest: /etc/opt/remi/php70/php.ini
+      owner: root
+      group: root
+      mode: 0644
+    notify:
+      - restart php70-php-fpm
+
+  - name: Configure handlers for Apache
+    template:
+      src: php70-php.conf.j2
+      dest: /etc/httpd/conf.d/php70-php.conf
+      owner: root
+      group: root
+      mode: 0644
+    notify:
+      - restart apache
+
+  - name: Enable and start php70-php-fpm
+    service:
+      name=php70-php-fpm
+      state=started
+      enabled=yes
+    notify:
+      - restart php70-php-fpm

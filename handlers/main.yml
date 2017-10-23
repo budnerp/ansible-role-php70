@@ -1,0 +1,16 @@
+---
+
+  - name: restart php70-php-fpm
+    service:
+      name: php70-php-fpm
+      state: restarted
+
+  - name: reload php70-php-fpm
+    service:
+      name: php70-php-fpm
+      state: reloaded
+
+  - name: restart apache
+    service:
+      name: httpd
+      state: restarted

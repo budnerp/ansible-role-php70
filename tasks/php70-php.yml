@@ -1,0 +1,46 @@
+---
+
+  - name: Install php70-php
+    yum:
+      name: "{{item}}"
+      state: installed
+    with_items:
+      - php70-php
+      - php70-php-fpm
+      - php70-php-common
+      - php70-php-cli
+
+  - name: Install php modules for Magento 2
+    yum:
+      name: "{{item}}"
+      state: installed
+    with_items:
+      - php70-php-bcmath
+      - php70-php-gd
+      - php70-php-intl
+      - php70-php-mbstring
+      - php70-php-mcrypt
+      - php70-php-pdo
+      - php70-php-soap
+      - php70-php-json
+      - php70-php-xml
+      - php70-php-xmlrpc
+      - php70-php-pecl-zip
+      - php70-php-pecl-redis
+      - php70-php-pecl-yaml
+      - php70-php-pecl-imagick
+      - php70-php-pecl-mysql
+      - php70-php-mysqlnd
+      - php70-php-phpiredis
+      - php70-php-pecl-redis
+      - php70-php-opcache
+
+  - name: Create a symlink php -> php70
+    file:
+      src: /usr/bin/php70
+      dest: /usr/bin/php
+      owner: root
+      group: root
+      state: link
+
+

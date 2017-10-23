@@ -1,0 +1,13 @@
+---
+
+  - name: install composer
+    get_url:
+      url=http://getcomposer.org/composer.phar
+      dest=/usr/local/bin/composer
+      owner=root
+      group=root
+      mode=0755
+    register: composer
+    until: composer|success
+    retries: 10
+    delay: 5

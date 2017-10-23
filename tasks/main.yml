@@ -1,0 +1,5 @@
+---
+
+  - include: php70-php.yml
+  - include: php70-php-fpm.yml
+  - include: composer.yml
